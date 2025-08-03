@@ -35,7 +35,7 @@ export default async function TilPost({
           <header>
             <div className="title">{post.title}</div>
             <div className="post-meta">
-              Published: {post.date} | Last modified: {post.lastModified}
+              Published: {post.date}
             </div>
           </header>
           

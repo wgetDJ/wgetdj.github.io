@@ -33,8 +33,8 @@ export default function RootLayout({
                   <a href="/blog">BLOG</a>
                   <span className="nav-separator">/</span>
                   <a href="/til">TIL</a>
-                  <span className="nav-separator">/</span>
-                  <a href="/works">WORKS</a>
+                  {/* <span className="nav-separator">/</span> */}
+                  {/* <a href="/works">WORKS</a> */}
                 </nav>
               </div>
             </div>
