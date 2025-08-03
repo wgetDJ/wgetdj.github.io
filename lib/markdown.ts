@@ -28,7 +28,15 @@ function getFileStats(filePath: string) {
 }
 
 function enhanceHTML(html: string): string {
-  return html.replace(/<pre><code class="language-(\w+)">/g, '<pre><code class="hljs language-$1">');
+  let enhanced = html.replace(/<pre><code class="language-(\w+)">/g, '<pre><code class="hljs language-$1">');
+  
+  // Add target="_blank" to external links
+  enhanced = enhanced.replace(
+    /<a href="https?:\/\/[^"]*"/g,
+    '$& target="_blank" rel="noopener noreferrer"'
+  );
+  
+  return enhanced;
 }
 
 export async function getPostData(type: 'blog' | 'til' | 'works', slug: string): Promise<PostData> {

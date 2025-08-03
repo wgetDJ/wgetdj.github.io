@@ -16,9 +16,15 @@ async function getAboutData() {
       .use(remarkHtml)
       .process(data.bio || "Welcome to my personal website.");
     
+    // Add target="_blank" to external links
+    const bioWithTargets = processedBio.toString().replace(
+      /<a href="https?:\/\/[^"]*"/g,
+      '$& target="_blank" rel="noopener noreferrer"'
+    );
+    
     return {
       name: data.name || "Dibyajyoti Mishra",
-      bio: processedBio.toString()
+      bio: bioWithTargets
     };
   } catch (error) {
     return {
