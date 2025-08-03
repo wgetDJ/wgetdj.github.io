@@ -38,7 +38,6 @@ export default async function Home() {
   const aboutData = await getAboutData();
   const blogPosts = getAllPosts('blog').slice(0, 7);
   const tilPosts = getAllPosts('til').slice(0, 7);
-  const works = getAllPosts('works').slice(0, 5);
 
   return (
     <div>
@@ -85,21 +84,6 @@ export default async function Home() {
                 <a href="/til">MORE TIL →</a>
               </li>
             )}
-          </div>
-        </div>
-      )}
-
-      {/* Works Section */}
-      {works.length > 0 && (
-        <div>
-          <div className="subtitle">WORKS</div>
-          <div id="list">
-            {works.map((work) => (
-              <li key={work.slug}>
-                <span className="post-meta">[{work.date}]</span>
-                <a href={`/works/${work.slug}`}>{work.title.toUpperCase()}</a>
-              </li>
-            ))}
           </div>
         </div>
       )}

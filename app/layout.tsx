@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "WGETDJ - Personal Website",
-  description: "A minimalist personal website with blog, TIL, and works sections",
+  description: "A minimalist personal website with blog and TIL sections",
 };
 
 

@@ -39,7 +39,7 @@ function enhanceHTML(html: string): string {
   return enhanced;
 }
 
-export async function getPostData(type: 'blog' | 'til' | 'works', slug: string): Promise<PostData> {
+export async function getPostData(type: 'blog' | 'til', slug: string): Promise<PostData> {
   const fullPath = path.join(contentDirectory, type, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { created, modified } = getFileStats(fullPath);
@@ -62,7 +62,7 @@ export async function getPostData(type: 'blog' | 'til' | 'works', slug: string):
   };
 }
 
-export function getAllPosts(type: 'blog' | 'til' | 'works'): PostData[] {
+export function getAllPosts(type: 'blog' | 'til'): PostData[] {
   const fullPath = path.join(contentDirectory, type);
   
   if (!fs.existsSync(fullPath)) {
@@ -93,7 +93,7 @@ export function getAllPosts(type: 'blog' | 'til' | 'works'): PostData[] {
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getAllPostSlugs(type: 'blog' | 'til' | 'works'): { params: { slug: string } }[] {
+export function getAllPostSlugs(type: 'blog' | 'til'): { params: { slug: string } }[] {
   const fullPath = path.join(contentDirectory, type);
   
   if (!fs.existsSync(fullPath)) {

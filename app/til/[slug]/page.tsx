@@ -6,10 +6,15 @@ interface Params {
 }
 
 export async function generateStaticParams() {
-  const slugs = getAllPostSlugs('til');
-  return slugs.map(({ params }) => ({
-    slug: params.slug,
-  }));
+  try {
+    const slugs = getAllPostSlugs('til');
+    return slugs.map(({ params }) => ({
+      slug: params.slug,
+    }));
+  } catch (error) {
+    // Return empty array if no posts exist
+    return [];
+  }
 }
 
 export default async function TilPost({ 
