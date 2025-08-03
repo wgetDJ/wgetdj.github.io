@@ -27,7 +27,7 @@ export default function RootLayout({
         <div className="header">
           <div className="logodiv">
             <div className="header-container">
-              <a href="/" className="title">WGETDJ</a>
+              <a href="/" className="title">Dibyajyoti Mishra</a>
               <div className="content-area">
                 <nav className="nav-menu">
                   <a href="/blog">BLOG</a>

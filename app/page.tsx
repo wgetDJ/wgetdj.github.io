@@ -2,26 +2,34 @@ import { getAllPosts } from '../lib/markdown';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import remarkHtml from 'remark-html';
 
-function getAboutData() {
+async function getAboutData() {
   try {
     const aboutPath = path.join(process.cwd(), 'content', 'about.md');
     const fileContents = fs.readFileSync(aboutPath, 'utf8');
     const { data } = matter(fileContents);
+    
+    // Process bio markdown to HTML
+    const processedBio = await remark()
+      .use(remarkHtml)
+      .process(data.bio || "Welcome to my personal website.");
+    
     return {
-      name: data.name || "Your Name",
-      bio: data.bio || "Welcome to my personal website."
+      name: data.name || "Dibyajyoti Mishra",
+      bio: processedBio.toString()
     };
   } catch (error) {
     return {
-      name: "Your Name",
-      bio: "Welcome to my personal website. I'm a developer, writer, and maker.\n\nThis is where I share my thoughts, learnings, and projects."
+      name: "Dibyajyoti Mishra",
+      bio: "Silent Talks"
     };
   }
 }
 
-export default function Home() {
-  const aboutData = getAboutData();
+export default async function Home() {
+  const aboutData = await getAboutData();
   const blogPosts = getAllPosts('blog').slice(0, 7);
   const tilPosts = getAllPosts('til').slice(0, 7);
   const works = getAllPosts('works').slice(0, 5);
@@ -30,9 +38,10 @@ export default function Home() {
     <div>
       {/* About Section */}
       <div className="title">{aboutData.name}</div>
-      <div className="about-content">
-        {aboutData.bio}
-      </div>
+      <div 
+        className="about-content"
+        dangerouslySetInnerHTML={{ __html: aboutData.bio }}
+      />
 
       {/* Blog Section */}
       {blogPosts.length > 0 && (

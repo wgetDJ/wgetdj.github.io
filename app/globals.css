@@ -273,6 +273,34 @@ video {
 
 .about-content {
     line-height: 1.3;
+    white-space: pre-line;
+}
+
+.about-content p {
+    margin: 0.5rem 0;
+}
+
+.about-content p:has(+ ul) {
+    margin-bottom: 0.1rem;
+}
+
+.about-content a {
+    color: #c8c8c8;
+    text-decoration: underline;
+}
+
+.about-content a:hover {
+    color: #ffffff;
+}
+
+.about-content ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.about-content li {
+    margin: 0;
+    line-height: 1.2;
 }
 
 @media (max-width: 768px) {
